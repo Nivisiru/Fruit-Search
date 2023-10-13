@@ -80,9 +80,7 @@ const fruit = [
   "Yuzu",
 ];
 
-// Search for matching fruits
 function search(str) {
-  // Convert input and fruits to lowercase for case-insensitive matching
   str = str.toLowerCase();
   return fruit.filter((f) => f.toLowerCase().includes(str));
 }
@@ -97,34 +95,25 @@ function search(str) {
 //     return results;
 //   }
 
-// References to the input and suggestions elements
 const input = document.querySelector("#fruit");
 const suggestions = document.querySelector(".suggestions ul");
 
-// Add event listeners
 input.addEventListener("input", searchHandler);
 suggestions.addEventListener("click", useSuggestion);
 
-// Event handler for input changes
 function searchHandler() {
-  // Get the trimmed input value
   const inputVal = input.value.trim();
-  // Search for matching fruits and show suggestions
   const results = search(inputVal);
   showSuggestions(results);
 }
 
-// Display suggestions
 function showSuggestions(results) {
   const fruitList = results.map((item) => `<li>${item}</li>`).join("");
   suggestions.innerHTML = `<ul>${fruitList}</ul>`;
-  // Show or hide suggestions based on results
   suggestions.style.display = results.length ? "block" : "none";
 }
 
-// Event handler for selecting a suggestion
 function useSuggestion(e) {
   input.value = e.target.textContent;
-  // Hide suggestions after selecting one
   suggestions.style.display = "none";
 }
