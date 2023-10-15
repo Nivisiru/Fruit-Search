@@ -95,24 +95,29 @@ function search(str) {
 //     return results;
 //   }
 
+// References to the input and suggestions elements
 const input = document.querySelector("#fruit");
 const suggestions = document.querySelector(".suggestions ul");
 
+// Add event listeners
 input.addEventListener("input", searchHandler);
 suggestions.addEventListener("click", useSuggestion);
 
+// Event handler for input changes
 function searchHandler() {
   const inputVal = input.value.trim();
   const results = search(inputVal);
   showSuggestions(results);
 }
 
+// Display suggestions
 function showSuggestions(results) {
   const fruitList = results.map((item) => `<li>${item}</li>`).join("");
   suggestions.innerHTML = `<ul>${fruitList}</ul>`;
   suggestions.style.display = results.length ? "block" : "none";
 }
 
+// Event handler for selecting a suggestion
 function useSuggestion(e) {
   input.value = e.target.textContent;
   suggestions.style.display = "none";
